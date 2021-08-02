@@ -46,5 +46,3 @@ return new SimpleCacheDecorator(
     new DatastoreParams('My Database Product')
 );
 ```
-
-Additional params about the data store can be
