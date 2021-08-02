@@ -9,6 +9,7 @@ use Samuelnogueira\CacheDatastoreNewrelic\CacheItemPoolDecorator;
 use Samuelnogueira\CacheDatastoreNewrelic\DatastoreParams;
 use Samuelnogueira\CacheDatastoreNewrelicTests\Stubs\NewrelicStub;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
+
 use function is_array;
 use function iterator_to_array;
 
