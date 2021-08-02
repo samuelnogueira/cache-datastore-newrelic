@@ -36,7 +36,7 @@ jobs:
 
       - run: php -i
 
-      - run: phpunit
+      - run: vendor/bin/phpunit
 
   coverage:
     runs-on: ubuntu-latest
@@ -53,9 +53,9 @@ jobs:
 
       - run: composer lint
 
-      - run: phpunit --coverage-clover=tests/reports/coverage.xml
+      - run: vendor/bin/phpunit --coverage-clover=coverage.xml
 
       - uses: codecov/codecov-action@v1
         with:
-          file: tests/reports/coverage.xml
+          file: coverage.xml
           fail_ci_if_error: true
