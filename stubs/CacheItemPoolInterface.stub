@@ -1,0 +1,15 @@
+<?php
+
+namespace Psr\Cache;
+
+use \Psr\Cache\CacheItemInterface;
+use \Traversable;
+
+interface CacheItemPoolInterface
+{
+    /**
+     * @param string[] $keys
+     * @return array<CacheItemInterface>|Traversable<CacheItemInterface>
+     */
+    public function getItems(array $keys = []);
+}

@@ -1,0 +1,12 @@
+includes:
+  - vendor/phpstan/phpstan-strict-rules/rules.neon
+  - vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
+parameters:
+  level: max
+  paths:
+    - src
+    - tests
+  stubFiles:
+    - stubs/CacheInterface.stub
+    - stubs/CacheItemInterface.stub
+    - stubs/CacheItemPoolInterface.stub

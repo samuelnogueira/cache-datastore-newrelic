@@ -1,0 +1,29 @@
+<?php
+
+namespace Psr\SimpleCache;
+
+interface CacheInterface
+{
+    /**
+     * @param iterable<string> $keys
+     * @param mixed            $default
+     *
+     * @return iterable<string, mixed>
+     */
+    public function getMultiple($keys, $default = null);
+
+    /**
+     * @param iterable<string, mixed> $values
+     * @param null|int|\DateInterval  $ttl
+     *
+     * @return bool
+     */
+    public function setMultiple($values, $ttl = null);
+
+    /**
+     * @param iterable<string> $keys
+     *
+     * @return bool
+     */
+    public function deleteMultiple($keys);
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+    <!-- display progress -->
+    <arg value="p"/>
+
+    <!-- coding standard -->
+    <rule ref="PSR12"/>
+
+    <!-- paths to check -->
+    <file>src</file>
+</ruleset>

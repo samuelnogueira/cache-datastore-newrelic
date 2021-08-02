@@ -1,0 +1,54 @@
+{
+    "name": "samuelnogueira/cache-datastore-newrelic",
+    "description": "Reports calls to any psr/simple-cache or psr/cache implementation as a custom New Relic Datastore",
+    "type": "library",
+    "license": "MIT",
+    "config": {
+        "sort-packages": true
+    },
+    "keywords": [
+        "newrelic",
+        "new",
+        "relic",
+        "datastore",
+        "psr",
+        "cache",
+        "simple"
+    ],
+    "authors": [
+        {
+            "name": "Samuel Nogueira",
+            "email": "samuel.nogueira@jumia.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Samuelnogueira\\CacheDatastoreNewrelic\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Samuelnogueira\\CacheDatastoreNewrelicTests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^7.3 || ^8.0",
+        "ext-newrelic": ">=7.6.0",
+        "psr/simple-cache": "^1.0",
+        "psr/cache": "^1.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "0.12.94",
+        "phpstan/phpstan-strict-rules": "0.12.10",
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "3.6.0",
+        "symfony/cache": "^5.3",
+        "thecodingmachine/phpstan-strict-rules": "0.12.1"
+    },
+    "scripts": {
+        "lint": [
+            "phpcs",
+            "phpstan analyse --no-progress"
+        ]
+    }
+}
