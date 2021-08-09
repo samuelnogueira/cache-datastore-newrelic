@@ -31,18 +31,20 @@
             "Samuelnogueira\\CacheDatastoreNewrelicTests\\": "tests/"
         }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": "^7.3 || ^8.0",
         "ext-newrelic": ">=7.5.0",
         "psr/simple-cache": "^1.0",
-        "psr/cache": "^1.0"
+        "psr/cache": "^1.0 || ^2.0 || ^3.0"
     },
     "require-dev": {
         "phpstan/phpstan": "0.12.94",
         "phpstan/phpstan-strict-rules": "0.12.10",
         "phpunit/phpunit": "9.5.8",
         "squizlabs/php_codesniffer": "3.6.0",
-        "symfony/cache": "5.3.4",
+        "symfony/cache": "5.3.4 || 6.0.x-dev",
         "thecodingmachine/phpstan-strict-rules": "0.12.1"
     },
     "provide": {

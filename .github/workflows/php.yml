@@ -6,10 +6,15 @@ jobs:
     strategy:
       matrix:
         php-version: [ 7.3, 7.4, 8.0 ]
-        prefer: [ dist ]
+        composer-with: [ 'psr/cache:^1.0' ]
+        composer-prefer: [ dist ]
         include:
           - php-version: 7.3
             prefer: lowest
+          - php-version: 8.0
+            composer-with: psr/cache:^2.0
+          - php-version: 8.0
+            composer-with: psr/cache:^3.0
     steps:
       - uses: actions/checkout@v2
 
@@ -28,7 +33,7 @@ jobs:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ matrix.php-version }}-composer
 
-      - run: composer update --prefer-${{ matrix.prefer }} --no-progress --ignore-platform-req ext-newrelic
+      - run: composer update --prefer-${{ matrix.composer-prefer }} --with='${{ matrix.composer-with }}' --no-progress --ignore-platform-req=ext-newrelic
 
       - run: composer show
 
