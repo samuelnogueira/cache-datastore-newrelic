@@ -10,7 +10,7 @@ jobs:
           - psr/cache:^1.0
           - psr/cache:^2.0
           - psr/cache:^3.0
-        composer-prefer: [ dist ]
+        composer-prefer: [ lowest, dist ]
         exclude:
           - php-version: 7.3
             composer-with: psr/cache:^2.0
@@ -20,8 +20,9 @@ jobs:
             composer-with: psr/cache:^2.0
           - php-version: 7.4
             composer-with: psr/cache:^3.0
-        include:
-          - php-version: 7.3
+          - php-version: 7.4
+            composer-prefer: lowest
+          - php-version: 8.0
             composer-prefer: lowest
     steps:
       - uses: actions/checkout@v2
