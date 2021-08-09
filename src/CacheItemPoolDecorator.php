@@ -40,11 +40,13 @@ final class CacheItemPoolDecorator implements CacheItemPoolInterface
 
     /**
      * @inheritDoc
+     *
+     * @return iterable<string, CacheItemInterface>
      */
-    public function getItems(array $keys = [])
+    public function getItems(array $keys = []): iterable
     {
         return $this->recorder->record(
-            function () use ($keys) {
+            function () use ($keys): iterable {
                 return $this->wrapped->getItems($keys);
             },
             'mget'
