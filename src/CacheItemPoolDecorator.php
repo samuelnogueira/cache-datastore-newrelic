@@ -40,8 +40,6 @@ final class CacheItemPoolDecorator implements CacheItemPoolInterface
 
     /**
      * @inheritDoc
-     *
-     * @return iterable<string, CacheItemInterface>
      */
     public function getItems(array $keys = []): iterable
     {
