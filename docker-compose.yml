@@ -1,0 +1,10 @@
+version: '3.4'
+services:
+  php:
+    network_mode: host
+    build:
+      context: ./
+      args:
+        UID: ${UID-1000}
+    volumes:
+    - ./:/app/
