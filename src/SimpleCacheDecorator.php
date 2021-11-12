@@ -25,6 +25,7 @@ final class SimpleCacheDecorator implements CacheInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function get($key, $default = null)
     {
@@ -38,6 +39,7 @@ final class SimpleCacheDecorator implements CacheInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function set($key, $value, $ttl = null): bool
     {
@@ -51,6 +53,7 @@ final class SimpleCacheDecorator implements CacheInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function delete($key): bool
     {
@@ -64,6 +67,7 @@ final class SimpleCacheDecorator implements CacheInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function clear(): bool
     {
@@ -77,6 +81,7 @@ final class SimpleCacheDecorator implements CacheInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function getMultiple($keys, $default = null): iterable
     {
@@ -90,6 +95,7 @@ final class SimpleCacheDecorator implements CacheInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function setMultiple($values, $ttl = null): bool
     {
@@ -103,6 +109,7 @@ final class SimpleCacheDecorator implements CacheInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function deleteMultiple($keys): bool
     {
@@ -116,6 +123,7 @@ final class SimpleCacheDecorator implements CacheInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function has($key): bool
     {

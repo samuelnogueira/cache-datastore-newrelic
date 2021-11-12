@@ -7,11 +7,14 @@ namespace Samuelnogueira\CacheDatastoreNewrelicTests;
 use PHPUnit\Framework\TestCase;
 use Samuelnogueira\CacheDatastoreNewrelic\CacheItemPoolDecorator;
 use Samuelnogueira\CacheDatastoreNewrelic\DatastoreParams;
-use Samuelnogueira\CacheDatastoreNewrelicTests\Stubs\NewrelicStub;
+use Samuelnogueira\CacheDatastoreNewrelic\Newrelic\Exception\DatastoreCallRecordFailedException;
+use Samuelnogueira\CacheDatastoreNewrelicTests\Stubs\NewrelicMock;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
 use function is_array;
 use function iterator_to_array;
+
+use const E_USER_WARNING;
 
 final class CacheItemPoolDecoratorTest extends TestCase
 {
@@ -78,14 +81,24 @@ final class CacheItemPoolDecoratorTest extends TestCase
                 ['product' => 'my_product', 'host' => 'my_host', 'operation' => 'get'],
                 ['product' => 'my_product', 'host' => 'my_host', 'operation' => 'mget'],
             ],
-            NewrelicStub::getRecordedSegments(),
+            NewrelicMock::getRecordedSegments(),
         );
+    }
+
+    public function testFailureThrowsException(): void
+    {
+        $subject = new CacheItemPoolDecorator(new ArrayAdapter(), new DatastoreParams('foo'));
+        NewrelicMock::addUpcomingError('Oh no', E_USER_WARNING);
+
+        $this->expectException(DatastoreCallRecordFailedException::class);
+        $this->expectExceptionMessage('Oh no');
+        $subject->getItem('bar');
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
 
-        NewrelicStub::reset();
+        NewrelicMock::reset();
     }
 }

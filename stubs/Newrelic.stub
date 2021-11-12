@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * @template T
+ * @param callable(): T $callable
+ * @param array<string, string> $params
+ * @return T|false
+ */
+function newrelic_record_datastore_segment(callable $callable, array $params) {}
