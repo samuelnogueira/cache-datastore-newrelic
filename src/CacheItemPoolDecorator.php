@@ -24,9 +24,9 @@ final class CacheItemPoolDecorator implements CacheItemPoolInterface
         $this->recorder = new DatastoreCallRecorder($params);
     }
 
-
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function getItem($key): CacheItemInterface
     {
@@ -40,6 +40,7 @@ final class CacheItemPoolDecorator implements CacheItemPoolInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function getItems(array $keys = []): iterable
     {
@@ -53,6 +54,7 @@ final class CacheItemPoolDecorator implements CacheItemPoolInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function hasItem($key): bool
     {
@@ -66,6 +68,7 @@ final class CacheItemPoolDecorator implements CacheItemPoolInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function clear(): bool
     {
@@ -79,6 +82,7 @@ final class CacheItemPoolDecorator implements CacheItemPoolInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function deleteItem($key): bool
     {
@@ -92,6 +96,7 @@ final class CacheItemPoolDecorator implements CacheItemPoolInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function deleteItems(array $keys): bool
     {
@@ -105,6 +110,7 @@ final class CacheItemPoolDecorator implements CacheItemPoolInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function save(CacheItemInterface $item): bool
     {
@@ -127,6 +133,7 @@ final class CacheItemPoolDecorator implements CacheItemPoolInterface
 
     /**
      * @inheritDoc
+     * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
     public function commit(): bool
     {

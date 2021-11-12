@@ -6,7 +6,9 @@ namespace Samuelnogueira\CacheDatastoreNewrelic\Newrelic;
 
 use RuntimeException;
 use Samuelnogueira\CacheDatastoreNewrelic\DatastoreParams;
+use Samuelnogueira\CacheDatastoreNewrelic\Newrelic\Exception\DatastoreCallRecordFailedException;
 
+use function error_get_last;
 use function function_exists;
 use function newrelic_record_datastore_segment;
 
@@ -33,10 +35,27 @@ final class DatastoreCallRecorder
     }
 
     /**
-     * @return false|mixed
+     * @template T
+     * @param callable(): T $callable
+     * @return T
+     * @throws DatastoreCallRecordFailedException
      */
     public function record(callable $callable, string $operation)
     {
-        return newrelic_record_datastore_segment($callable, $this->params->asSegmentParams($operation));
+        error_clear_last();
+        $result = @newrelic_record_datastore_segment($callable, $this->params->asSegmentParams($operation));
+        if ($result !== false) {
+            // Non `false` results are always a success.
+            return $result;
+        }
+
+        $error = error_get_last();
+        if ($error === null) {
+            // @phpstan-ignore-next-line No error was raised, which means the callback itself returned `false`.
+            return $result;
+        }
+
+        // Result is `false`, and an error was raised, convert it to exception.
+        throw DatastoreCallRecordFailedException::createFromPhpError($error);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use Samuelnogueira\CacheDatastoreNewrelicTests\Stubs\NewrelicStub;
+use Samuelnogueira\CacheDatastoreNewrelicTests\Stubs\NewrelicMock;
 
 /**
  * @param array<string, string> $params
@@ -8,5 +8,5 @@ use Samuelnogueira\CacheDatastoreNewrelicTests\Stubs\NewrelicStub;
  */
 function newrelic_record_datastore_segment(callable $callable, array $params)
 {
-    return NewrelicStub::recordDatastoreSegment($callable, $params);
+    return NewrelicMock::recordDatastoreSegment($callable, $params);
 }

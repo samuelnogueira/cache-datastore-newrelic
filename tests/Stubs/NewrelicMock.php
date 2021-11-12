@@ -4,13 +4,18 @@ declare(strict_types=1);
 
 namespace Samuelnogueira\CacheDatastoreNewrelicTests\Stubs;
 
+use function array_shift;
+use function trigger_error;
+
 /**
  * @internal
  */
-final class NewrelicStub
+final class NewrelicMock
 {
     /** @var array<array<string, string>> */
     private static $recordedSegments = [];
+    /** @var array<int, array{'message': string, 'level': int}> */
+    private static $upcomingErrors = [];
 
     /**
      * @param array<string, string> $params
@@ -18,6 +23,13 @@ final class NewrelicStub
      */
     public static function recordDatastoreSegment(callable $callable, array $params)
     {
+        if (self::$upcomingErrors !== []) {
+            ['message' => $message, 'level' => $level] = array_shift(self::$upcomingErrors);
+            trigger_error($message, $level);
+
+            return false;
+        }
+
         self::$recordedSegments[] = $params;
 
         return $callable();
@@ -31,8 +43,14 @@ final class NewrelicStub
         return self::$recordedSegments;
     }
 
+    public static function addUpcomingError(string $message, int $level): void
+    {
+        self::$upcomingErrors[] = ['message' => $message, 'level' => $level];
+    }
+
     public static function reset(): void
     {
         self::$recordedSegments = [];
+        self::$upcomingErrors   = [];
     }
 }

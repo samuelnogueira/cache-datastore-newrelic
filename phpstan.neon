@@ -10,3 +10,4 @@ parameters:
     - stubs/CacheInterface.stub
     - stubs/CacheItemInterface.stub
     - stubs/CacheItemPoolInterface.stub
+    - stubs/Newrelic.stub

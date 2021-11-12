@@ -6,10 +6,13 @@ namespace Samuelnogueira\CacheDatastoreNewrelicTests;
 
 use PHPUnit\Framework\TestCase;
 use Samuelnogueira\CacheDatastoreNewrelic\DatastoreParams;
+use Samuelnogueira\CacheDatastoreNewrelic\Newrelic\Exception\DatastoreCallRecordFailedException;
 use Samuelnogueira\CacheDatastoreNewrelic\SimpleCacheDecorator;
-use Samuelnogueira\CacheDatastoreNewrelicTests\Stubs\NewrelicStub;
+use Samuelnogueira\CacheDatastoreNewrelicTests\Stubs\NewrelicMock;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Psr16Cache;
+
+use const E_USER_WARNING;
 
 final class SimpleCacheDecoratorTest extends TestCase
 {
@@ -54,14 +57,28 @@ final class SimpleCacheDecoratorTest extends TestCase
                 ['product' => 'my_product', 'collection' => 'my_collection', 'operation' => 'get'],
                 ['product' => 'my_product', 'collection' => 'my_collection', 'operation' => 'mget'],
             ],
-            NewrelicStub::getRecordedSegments(),
+            NewrelicMock::getRecordedSegments(),
         );
+    }
+
+    public function testFailureThrowsException(): void
+    {
+        $subject = new SimpleCacheDecorator(
+            new Psr16Cache(new ArrayAdapter()),
+            new DatastoreParams('reynholm_industries'),
+        );
+        NewrelicMock::addUpcomingError('Office has too much RAM', E_USER_WARNING);
+
+        $this->expectException(DatastoreCallRecordFailedException::class);
+        $this->expectExceptionMessage('Office has too much RAM');
+
+        $subject->get('jen');
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
 
-        NewrelicStub::reset();
+        NewrelicMock::reset();
     }
 }
