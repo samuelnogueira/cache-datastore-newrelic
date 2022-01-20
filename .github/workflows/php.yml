@@ -75,3 +75,9 @@ jobs:
         with:
           file: coverage.xml
           fail_ci_if_error: true
+
+  bc-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Nyholm/roave-bc-check-docker@0.1.0
