@@ -17,8 +17,7 @@ use function newrelic_record_datastore_segment;
  */
 final class DatastoreCallRecorder
 {
-    /** @var DatastoreParams */
-    private $params;
+    private DatastoreParams $params;
 
     /**
      * @throws RuntimeException If `newrelic` extension is not loaded.

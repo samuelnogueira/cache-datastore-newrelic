@@ -14,9 +14,9 @@ use Samuelnogueira\CacheDatastoreNewrelic\Newrelic\DatastoreCallRecorder;
 final class CacheItemPoolDecorator implements CacheItemPoolInterface
 {
     /** @var CacheItemPoolInterface */
-    private $wrapped;
+    private CacheItemPoolInterface $wrapped;
     /** @var DatastoreCallRecorder */
-    private $recorder;
+    private DatastoreCallRecorder $recorder;
 
     public function __construct(CacheItemPoolInterface $wrapped, DatastoreParams $params)
     {

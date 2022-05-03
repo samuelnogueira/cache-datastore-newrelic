@@ -11,18 +11,12 @@ use function array_filter;
  */
 final class DatastoreParams
 {
-    /** @var string */
-    private $product;
-    /** @var string|null */
-    private $collection;
-    /** @var string|null */
-    private $host;
-    /** @var string|null */
-    private $portPathOrId;
-    /** @var string|null */
-    private $databaseName;
-    /** @var string|null */
-    private $inputQueryLabel;
+    private string $product;
+    private ?string $collection;
+    private ?string $host;
+    private ?string $portPathOrId;
+    private ?string $databaseName;
+    private ?string $inputQueryLabel;
 
     /**
      * @param string      $product         The name of the datastore product being used: for example, MySQL to indicate

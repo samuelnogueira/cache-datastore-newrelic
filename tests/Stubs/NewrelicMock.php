@@ -13,15 +13,15 @@ use function trigger_error;
 final class NewrelicMock
 {
     /** @var array<array<string, string>> */
-    private static $recordedSegments = [];
+    private static array $recordedSegments = [];
     /** @var array<int, array{'message': string, 'level': int}> */
-    private static $upcomingErrors = [];
+    private static array $upcomingErrors = [];
 
     /**
      * @param array<string, string> $params
      * @return false|mixed
      */
-    public static function recordDatastoreSegment(callable $callable, array $params)
+    public static function recordDatastoreSegment(callable $callable, array $params): mixed
     {
         if (self::$upcomingErrors !== []) {
             ['message' => $message, 'level' => $level] = array_shift(self::$upcomingErrors);
