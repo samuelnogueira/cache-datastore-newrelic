@@ -48,8 +48,8 @@
         "thecodingmachine/phpstan-strict-rules": "1.0.0"
     },
     "provide": {
-        "psr/cache-implementation": "1.0",
-        "psr/simple-cache-implementation": "1.0"
+        "psr/cache-implementation": "3.0",
+        "psr/simple-cache-implementation": "3.0"
     },
     "scripts": {
         "lint": [
