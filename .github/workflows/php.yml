@@ -6,26 +6,33 @@ jobs:
     strategy:
       matrix:
         php-version: [ 7.3, 7.4, 8.0, 8.1 ]
-        composer-with:
-          - psr/cache:^1.0
-          - psr/cache:^2.0
-          - psr/cache:^3.0
         composer-prefer: [ lowest, dist ]
+        psr-cache-version: [ ^1.0, ^2.0, ^3.0 ]
+        psr-simple-cache-version: [ ^1.0, ^2.0, ^3.0 ]
         exclude:
-          - php-version: 7.3
-            composer-with: psr/cache:^2.0
-          - php-version: 7.3
-            composer-with: psr/cache:^3.0
-          - php-version: 7.4
-            composer-with: psr/cache:^2.0
-          - php-version: 7.4
-            composer-with: psr/cache:^3.0
-          - php-version: 7.4
-            composer-prefer: lowest
-          - php-version: 8.0
-            composer-prefer: lowest
-          - php-version: 8.1
-            composer-prefer: lowest
+          # psr/cache v2 does not support PHP 7.*
+          - psr-cache-version: ^2.0
+            php-version: 7.3
+          - psr-cache-version: ^2.0
+            php-version: 7.4
+
+          # psr/cache v3 does not support PHP 7.*
+          - psr-cache-version: ^3.0
+            php-version: 7.3
+          - psr-cache-version: ^3.0
+            php-version: 7.4
+
+          # psr/simple-cache v2 does not support PHP 7.*
+          - psr-simple-cache-version: ^2.0
+            php-version: 7.3
+          - psr-simple-cache-version: ^2.0
+            php-version: 7.4
+
+          # psr/simple-cache v3 does not support PHP 7.*
+          - psr-simple-cache-version: ^3.0
+            php-version: 7.3
+          - psr-simple-cache-version: ^3.0
+            php-version: 7.4
     steps:
       - uses: actions/checkout@v3
 
@@ -44,7 +51,13 @@ jobs:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ matrix.php-version }}-composer
 
-      - run: composer update --prefer-${{ matrix.composer-prefer }} --with='${{ matrix.composer-with }}' --no-progress --ignore-platform-req=ext-newrelic
+      - run: |
+          composer update \
+          --prefer-${{ matrix.composer-prefer }} \
+          --with='psr/cache:${{ matrix.psr-cache-version }}' \
+          --with='psr/simple-cache:${{ matrix.psr-simple-cache-version }}' \
+          --ignore-platform-req=ext-newrelic \
+          --no-progress
 
       - run: composer show
 
