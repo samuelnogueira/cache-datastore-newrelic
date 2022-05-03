@@ -7,19 +7,6 @@ jobs:
       matrix:
         php-version: [ 8.0, 8.1 ]
         composer-prefer: [ lowest, dist ]
-        psr-cache-version: [ ^1.0, ^2.0, ^3.0 ]
-        exclude:
-          # psr/cache v2 does not support PHP 7.*
-          - psr-cache-version: ^2.0
-            php-version: 7.3
-          - psr-cache-version: ^2.0
-            php-version: 7.4
-
-          # psr/cache v3 does not support PHP 7.*
-          - psr-cache-version: ^3.0
-            php-version: 7.3
-          - psr-cache-version: ^3.0
-            php-version: 7.4
     steps:
       - uses: actions/checkout@v3
 
@@ -41,7 +28,6 @@ jobs:
       - run: |
           composer update \
           --prefer-${{ matrix.composer-prefer }} \
-          --with='psr/cache:${{ matrix.psr-cache-version }}' \
           --ignore-platform-req=ext-newrelic \
           --no-progress
 
