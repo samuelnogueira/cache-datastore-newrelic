@@ -5,27 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: [ 7.3, 7.4, 8.0, 8.1 ]
-        composer-with:
-          - psr/cache:^1.0
-          - psr/cache:^2.0
-          - psr/cache:^3.0
+        php-version: [ 8.0, 8.1 ]
         composer-prefer: [ lowest, dist ]
-        exclude:
-          - php-version: 7.3
-            composer-with: psr/cache:^2.0
-          - php-version: 7.3
-            composer-with: psr/cache:^3.0
-          - php-version: 7.4
-            composer-with: psr/cache:^2.0
-          - php-version: 7.4
-            composer-with: psr/cache:^3.0
-          - php-version: 7.4
-            composer-prefer: lowest
-          - php-version: 8.0
-            composer-prefer: lowest
-          - php-version: 8.1
-            composer-prefer: lowest
     steps:
       - uses: actions/checkout@v3
 
@@ -44,7 +25,11 @@ jobs:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ matrix.php-version }}-composer
 
-      - run: composer update --prefer-${{ matrix.composer-prefer }} --with='${{ matrix.composer-with }}' --no-progress --ignore-platform-req=ext-newrelic
+      - run: |
+          composer update \
+          --prefer-${{ matrix.composer-prefer }} \
+          --ignore-platform-req=ext-newrelic \
+          --no-progress
 
       - run: composer show
 

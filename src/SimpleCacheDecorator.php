@@ -12,10 +12,8 @@ use Samuelnogueira\CacheDatastoreNewrelic\Newrelic\DatastoreCallRecorder;
  */
 final class SimpleCacheDecorator implements CacheInterface
 {
-    /** @var CacheInterface */
-    private $wrapped;
-    /** @var DatastoreCallRecorder */
-    private $recorder;
+    private CacheInterface $wrapped;
+    private DatastoreCallRecorder $recorder;
 
     public function __construct(CacheInterface $wrapped, DatastoreParams $params)
     {
@@ -27,7 +25,7 @@ final class SimpleCacheDecorator implements CacheInterface
      * @inheritDoc
      * @throws Newrelic\Exception\DatastoreCallRecordFailedException
      */
-    public function get($key, $default = null)
+    public function get(string $key, mixed $default = null): mixed
     {
         return $this->recorder->record(
             function () use ($key, $default) {

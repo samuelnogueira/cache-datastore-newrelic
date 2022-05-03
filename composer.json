@@ -34,22 +34,22 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.3 || ^8.0",
+        "php": "~8.0.0 || ~8.1.0",
         "ext-newrelic": ">=7.5.0",
-        "psr/simple-cache": "^1.0",
-        "psr/cache": "^1.0 || ^2.0 || ^3.0"
+        "psr/simple-cache": "^3.0",
+        "psr/cache": "^3.0"
     },
     "require-dev": {
         "phpstan/phpstan": "1.4.6",
         "phpstan/phpstan-strict-rules": "1.1.0",
         "phpunit/phpunit": "9.5.13",
         "squizlabs/php_codesniffer": "3.6.2",
-        "symfony/cache": "5.3.10 || 6.0.x-dev",
+        "symfony/cache": "6.0.8",
         "thecodingmachine/phpstan-strict-rules": "1.0.0"
     },
     "provide": {
-        "psr/cache-implementation": "1.0",
-        "psr/simple-cache-implementation": "1.0"
+        "psr/cache-implementation": "3.0",
+        "psr/simple-cache-implementation": "3.0"
     },
     "scripts": {
         "lint": [
