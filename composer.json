@@ -42,7 +42,7 @@
     "require-dev": {
         "phpstan/phpstan": "1.6.9",
         "phpstan/phpstan-strict-rules": "1.2.3",
-        "phpunit/phpunit": "9.5.20",
+        "phpunit/phpunit": "10.0.19",
         "squizlabs/php_codesniffer": "3.6.2",
         "symfony/cache": "6.0.8",
         "thecodingmachine/phpstan-strict-rules": "1.0.0"
