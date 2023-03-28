@@ -13,7 +13,6 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          tools: phpunit
 
       - name: Get composer cache directory
         id: composer-cache
@@ -32,11 +31,8 @@ jobs:
           --no-progress
 
       - run: composer show
-
       - run: php -v
-
       - run: php -i
-
       - run: vendor/bin/phpunit
 
   coverage:
@@ -53,7 +49,6 @@ jobs:
         run: composer update --no-progress --ignore-platform-req ext-newrelic
 
       - run: composer lint
-
       - run: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage.xml
 
       - uses: codecov/codecov-action@v3
@@ -65,4 +60,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: Nyholm/roave-bc-check-docker@0.1.0
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+
+      - run: |
+          composer update \
+          --ignore-platform-req=ext-newrelic \
+          --no-progress
+
+      - run: vendor/bin/roave-backward-compatibility-check
