@@ -68,6 +68,6 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: 8.1
+          tools: roave/backward-compatibility-check
 
-      - run: composer update --ignore-platform-req=ext-newrelic --no-progress
-      - run: vendor/bin/roave-backward-compatibility-check
+      - run: roave-backward-compatibility-check
