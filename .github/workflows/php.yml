@@ -13,7 +13,6 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          tools: phpunit
 
       - name: Get composer cache directory
         id: composer-cache
@@ -32,37 +31,22 @@ jobs:
           --no-progress
 
       - run: composer show
-
       - run: php -v
-
       - run: php -i
-
       - run: vendor/bin/phpunit
-
-  coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/cache@v3
-        with:
-          path: vendor/
-          key: ${{ hashFiles('composer.json') }}
-
-      - name: Install dependencies
-        run: composer update --no-progress --ignore-platform-req ext-newrelic
-
-      - run: composer lint
-
-      - run: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage.xml
-
-      - uses: codecov/codecov-action@v3
-        with:
-          file: coverage.xml
-          fail_ci_if_error: true
 
   bc-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: Nyholm/roave-bc-check-docker@0.1.0
+        with:
+          # Number of commits to fetch. 0 indicates all history for all branches and tags.
+          # Default: 1
+          fetch-depth: 0
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          tools: roave/backward-compatibility-check
+
+      - run: roave-backward-compatibility-check
