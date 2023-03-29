@@ -35,27 +35,6 @@ jobs:
       - run: php -i
       - run: vendor/bin/phpunit
 
-  coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/cache@v3
-        with:
-          path: vendor/
-          key: ${{ hashFiles('composer.json') }}
-
-      - name: Install dependencies
-        run: composer update --no-progress --ignore-platform-req ext-newrelic
-
-      - run: composer lint
-      - run: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage.xml
-
-      - uses: codecov/codecov-action@v3
-        with:
-          file: coverage.xml
-          fail_ci_if_error: true
-
   bc-check:
     runs-on: ubuntu-latest
     steps:
