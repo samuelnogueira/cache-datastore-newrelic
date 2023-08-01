@@ -44,7 +44,7 @@
         "phpstan/phpstan-strict-rules": "1.5.1",
         "phpunit/phpunit": "9.6.8",
         "squizlabs/php_codesniffer": "3.7.2",
-        "symfony/cache": "6.0.19",
+        "symfony/cache": "6.3.2",
         "thecodingmachine/phpstan-strict-rules": "1.0.0"
     },
     "provide": {
