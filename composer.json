@@ -43,7 +43,7 @@
         "phpstan/phpstan": "1.10.67",
         "phpstan/phpstan-strict-rules": "1.5.5",
         "phpunit/phpunit": "9.6.16",
-        "squizlabs/php_codesniffer": "3.9.1",
+        "squizlabs/php_codesniffer": "3.9.2",
         "symfony/cache": "6.0.19",
         "thecodingmachine/phpstan-strict-rules": "1.0.0"
     },
