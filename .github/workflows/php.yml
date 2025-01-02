@@ -38,7 +38,7 @@ jobs:
   bc-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           # Number of commits to fetch. 0 indicates all history for all branches and tags.
           # Default: 1
@@ -46,6 +46,10 @@ jobs:
 
       - uses: shivammathur/setup-php@v2
         with:
-          tools: roave/backward-compatibility-check
+          coverage: none
 
-      - run: roave-backward-compatibility-check
+      - uses: ramsey/composer-install@3.0.0
+        with:
+          working-directory: tools
+
+      - run: tools/vendor/bin/roave-backward-compatibility-check
