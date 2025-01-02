@@ -1,0 +1,10 @@
+{
+    "require": {
+        "roave/backward-compatibility-check": "^8.10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Samuelnogueira\\CacheDatastoreNewrelic\\": "../src/"
+        }
+    }
+}
