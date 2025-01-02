@@ -2,6 +2,11 @@
     "require": {
         "roave/backward-compatibility-check": "^8.10.0"
     },
+    "config": {
+        "platform": {
+            "php": "8.3.99"
+        }
+    },
     "autoload": {
         "psr-4": {
             "Samuelnogueira\\CacheDatastoreNewrelic\\": "../src/"
