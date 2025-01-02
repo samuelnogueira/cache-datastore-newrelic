@@ -52,4 +52,4 @@ jobs:
         with:
           working-directory: tools
 
-      - run: tools/vendor/bin/roave-backward-compatibility-check --from=origin/${{ github.base_ref }}
+      - run: tools/vendor/bin/roave-backward-compatibility-check
