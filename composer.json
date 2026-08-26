@@ -43,8 +43,8 @@
         "phpstan/phpstan": "1.12.7",
         "phpstan/phpstan-strict-rules": "1.6.1",
         "phpunit/phpunit": "9.6.34",
-        "squizlabs/php_codesniffer": "4.0.1",
-        "symfony/cache": "6.0.19",
+        "squizlabs/php_codesniffer": "4.0.2",
+        "symfony/cache": "6.4.40",
         "thecodingmachine/phpstan-strict-rules": "1.0.0"
     },
     "provide": {
