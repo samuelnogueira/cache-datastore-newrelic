@@ -34,7 +34,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "~8.0.2 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
         "ext-newrelic": ">=7.5.0",
         "psr/simple-cache": "^3.0",
         "psr/cache": "^3.0"
@@ -43,8 +43,8 @@
         "phpstan/phpstan": "1.12.7",
         "phpstan/phpstan-strict-rules": "1.6.1",
         "phpunit/phpunit": "9.6.34",
-        "squizlabs/php_codesniffer": "4.0.1",
-        "symfony/cache": "6.0.19",
+        "squizlabs/php_codesniffer": "4.0.2",
+        "symfony/cache": "6.4.40",
         "thecodingmachine/phpstan-strict-rules": "1.0.0"
     },
     "provide": {
